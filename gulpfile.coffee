@@ -1,7 +1,11 @@
 gulp = require 'gulp'
 stylus = require 'gulp-stylus'
+coffee = require 'gulp-coffee'
 del = require 'del'
+nib = require 'nib'
 wiredep = require('wiredep').stream
+
+debug = true
 
 project =
   name: 'bow'
@@ -9,7 +13,7 @@ project =
   dest: './build'
 assets =
   src: "#{project.src}/assets"
-  dest: "#{project.dest}/styles"
+  dest: "#{project.dest}/static"
 
 gulp.task 'default', ['clean'], -> gulp.start('build')
 
@@ -26,9 +30,19 @@ gulp.task 'clean', (done) ->
     "#{assets.dest}/**/*"
   ], done
 
-gulp.task 'build', ['style']
+gulp.task 'stylus', ->
+  options =
+    use: nib()
+    compress: !debug
+  gulp.src "#{assets.src}/styles/*.styl"
+    .pipe stylus options
+    .pipe gulp.dest "#{assets.dest}/styles/"
 
-gulp.task 'style', ->
-  gulp.src '#{assets.src}/styles/*.stylus'
-    .pipe stylus
-    .pipe gulp.dest('#{assets.dest}/styles')
+gulp.task 'coffee', ->
+  options =
+    base: true
+  gulp.src "#{assets.src}/scripts/*.coffee"
+    .pipe coffee options
+    .pipe gulp.dest "#{assets.dest}/scripts/"
+
+gulp.task 'build', ['style']
