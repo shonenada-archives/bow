@@ -22,16 +22,11 @@ gulp.task 'default', ['clean'], -> gulp.start('build')
 
 gulp.task "wiredep", ->
   gulp.src "#{project.src}/*.html"
-    .pipe wiredep(
-      optional: 'configuration'
-      goes: 'here'
-    )
+    .pipe wiredep()
     .pipe gulp.dest("#{project.dest}/")
 
 gulp.task 'clean', (done) ->
-  del [
-    "#{assets.dest}/**/*"
-  ], done
+  del ["#{project.dest}"], done
 
 gulp.task 'stylus', ->
   options =
@@ -52,4 +47,4 @@ gulp.task 'coffee', ->
     .pipe sourcemaps.write("#{assets.sourcemap}")
     .pipe gulp.dest "#{assets.dest}/scripts/"
 
-gulp.task 'build', ['style']
+gulp.task 'build', ['wiredep', 'stylus', 'coffee']
