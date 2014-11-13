@@ -1,13 +1,29 @@
 <!doctype html>
 <html>
   <head>
-      <!-- bower:css -->
-      <!-- endbower -->
-      <!-- bower:js -->
-      <!-- endbower -->
-      <script src="/static/scripts/index.js"></script>
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <link href="/static/styles/base.css" rel="stylesheet" type="text/css" />
+    <link href="/static/styles/index.css" rel="stylesheet" type="text/css" />
+    <script src="/static/scripts/index.js"></script>
   </head>
-  <body>
-
+  <body id="index-main">
+    <div class="main wrapper">
+      <form>
+        <div id="signin-box">
+          <section>
+            <label for="username">username: </label>
+            <input type="text" name="username" id="username" />
+          </section>
+          <section>
+            <label for="password">password: </label>
+            <input type="password" name="password" id="password" />
+          </section>
+          <button>Signin</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
