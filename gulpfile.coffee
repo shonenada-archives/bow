@@ -6,8 +6,8 @@ nib = require 'nib'
 wiredep = require('wiredep').stream
 sourcemaps = require 'gulp-sourcemaps'
 uglify = require 'gulp-uglify'
-
-debug = false
+webpack = require 'webpack'
+{argv} = require 'yargs'
 
 project =
   name: 'bow'
@@ -31,7 +31,7 @@ gulp.task 'clean', (done) ->
 gulp.task 'stylus', ->
   options =
     use: nib()
-    compress: !debug
+    compress: not argv.debug
   gulp.src "#{assets.src}/styles/*.styl"
     .pipe stylus options
     .pipe gulp.dest "#{assets.dest}/styles/"
@@ -39,7 +39,6 @@ gulp.task 'stylus', ->
 gulp.task 'coffee', ->
   options =
     base: true
-    compress: !debug
   gulp.src "#{assets.src}/scripts/*.coffee"
     .pipe sourcemaps.init()
     .pipe coffee options
