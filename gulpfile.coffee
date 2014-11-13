@@ -1,7 +1,7 @@
 gulp = require 'gulp'
+del = require 'del'
 stylus = require 'gulp-stylus'
 coffee = require 'gulp-coffee'
-del = require 'del'
 nib = require 'nib'
 wiredep = require('wiredep').stream
 sourcemaps = require 'gulp-sourcemaps'
@@ -22,7 +22,9 @@ gulp.task 'default', ['clean'], -> gulp.start('build')
 
 gulp.task "wiredep", ->
   gulp.src "#{project.src}/*.html"
-    .pipe wiredep()
+    .pipe wiredep(
+      directory: "#{project.src}/bower_components/"
+    )
     .pipe gulp.dest("#{project.dest}/")
 
 gulp.task 'clean', (done) ->
@@ -46,4 +48,8 @@ gulp.task 'coffee', ->
     .pipe sourcemaps.write("#{assets.sourcemap}")
     .pipe gulp.dest "#{assets.dest}/scripts/"
 
-gulp.task 'build', ['wiredep', 'stylus', 'coffee']
+gulp.task 'copy', ->
+  gulp.src "#{project.src}/bower_components/**/*.js"
+    .pipe gulp.dest "#{project.dest}/bower_components/"
+
+gulp.task 'build', ['wiredep', 'stylus', 'coffee', 'copy']
