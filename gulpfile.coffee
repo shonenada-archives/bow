@@ -4,8 +4,10 @@ coffee = require 'gulp-coffee'
 del = require 'del'
 nib = require 'nib'
 wiredep = require('wiredep').stream
+sourcemaps = require 'gulp-sourcemaps'
+uglify = require 'gulp-uglify'
 
-debug = true
+debug = false
 
 project =
   name: 'bow'
@@ -14,6 +16,7 @@ project =
 assets =
   src: "#{project.src}/assets"
   dest: "#{project.dest}/static"
+  sourcemap: "./maps"
 
 gulp.task 'default', ['clean'], -> gulp.start('build')
 
@@ -41,8 +44,12 @@ gulp.task 'stylus', ->
 gulp.task 'coffee', ->
   options =
     base: true
+    compress: !debug
   gulp.src "#{assets.src}/scripts/*.coffee"
+    .pipe sourcemaps.init()
     .pipe coffee options
+    .pipe uglify()
+    .pipe sourcemaps.write("#{assets.sourcemap}")
     .pipe gulp.dest "#{assets.dest}/scripts/"
 
 gulp.task 'build', ['style']
