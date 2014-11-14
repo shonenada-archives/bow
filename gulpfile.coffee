@@ -24,7 +24,7 @@ gulp.task 'default', ['clean'], -> gulp.start('build')
 gulp.task "wiredep", ->
   gulp.src "#{project.src}/*.html"
     .pipe wiredep(
-      directory: "#{project.src}/bower_components/"
+      directory: "bower_components/"
     )
     .pipe gulp.dest("#{project.dest}/")
 
@@ -57,11 +57,13 @@ gulp.task 'browser-sync', ->
     server:
       baseDir: ["#{project.dest}"]
       routes:
-        "/bower_components": "#{project.src}/bower_components"
+        "/bower_components": "bower_components"
 
 gulp.task 'watch', ['default'], ->
   gulp.start 'browser-sync'
-  gulp.watch "#{assets.src}/*/**/*.{coffee,styl}"
+  gulp.watch ["#{assets.src}/*/**/*.{coffee,styl}",
+              "#{project.src}/**/*.html",
+              "bower_components"]
   , ['build']
 
 gulp.task 'build', ['wiredep', 'stylus', 'coffee']
