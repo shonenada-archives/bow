@@ -1,4 +1,5 @@
 gulp = require 'gulp'
+browserSync = require 'browser-sync'
 del = require 'del'
 stylus = require 'gulp-stylus'
 coffee = require 'gulp-coffee'
@@ -37,6 +38,7 @@ gulp.task 'stylus', ->
   gulp.src "#{assets.src}/styles/*.styl"
     .pipe stylus options
     .pipe gulp.dest "#{assets.dest}/styles/"
+    .pipe browserSync.reload(stream: true)
 
 gulp.task 'coffee', ->
   options =
@@ -47,9 +49,19 @@ gulp.task 'coffee', ->
     .pipe uglify()
     .pipe sourcemaps.write("#{assets.sourcemap}")
     .pipe gulp.dest "#{assets.dest}/scripts/"
+    .pipe browserSync.reload(stream: true)
 
-gulp.task 'copy', ->
-  gulp.src "#{project.src}/bower_components/**/*.js"
-    .pipe gulp.dest "#{project.dest}/bower_components/"
+gulp.task 'browser-sync', ->
+  browserSync
+    port: 8008
+    server:
+      baseDir: ["#{project.dest}"]
+      routes:
+        "/bower_components": "#{project.src}/bower_components"
 
-gulp.task 'build', ['wiredep', 'stylus', 'coffee', 'copy']
+gulp.task 'watch', ['default'], ->
+  gulp.start 'browser-sync'
+  gulp.watch "#{assets.src}/*/**/*.{coffee,styl}"
+  , ['build']
+
+gulp.task 'build', ['wiredep', 'stylus', 'coffee']
