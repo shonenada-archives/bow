@@ -59,6 +59,10 @@ gulp.task 'browser-sync', ->
       routes:
         "/bower_components": "bower_components"
 
+gulp.task 'copy', ->
+  gulp.src "#{assets.src}/images/*.{png,jpg,gif}"
+    .pipe gulp.dest "#{assets.dest}/images/"
+
 gulp.task 'watch', ['default'], ->
   gulp.start 'browser-sync'
   gulp.watch ["#{assets.src}/*/**/*.{coffee,styl}",
@@ -66,4 +70,4 @@ gulp.task 'watch', ['default'], ->
               "bower_components"]
   , ['build']
 
-gulp.task 'build', ['wiredep', 'stylus', 'coffee']
+gulp.task 'build', ['wiredep', 'stylus', 'coffee', 'copy']
