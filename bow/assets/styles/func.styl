@@ -1,0 +1,15 @@
+common-style(name, args...)
+  -webkit-{name} args
+  -moz-{name} args
+  -o-{name} args
+  -ms-{name} args
+  {name} args
+
+box-shadow(args...)
+  common-style box-shadow args
+
+border-radius(args...)
+  common-style border-radius args
+
+transition(during)
+  common-style transition during
