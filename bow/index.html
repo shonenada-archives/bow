@@ -5,23 +5,16 @@
     <title>Letters</title>
     <!-- bower:css -->
     <!-- endbower -->
-    <!-- bower:js -->
-    <!-- endbower -->
     <link href="/static/styles/base.css" rel="stylesheet" type="text/css" />
     <link href="/static/styles/index.css" rel="stylesheet" type="text/css" />
-    <script src="/static/scripts/index.js"></script>
   </head>
-  <body id="index-main">
-    <div id="header">
-      <h1>Letters</h1>
-      <p>Letter needs times.</p>
-      <div class="btn-box">
-        <a href="#" class="btn">Sign Up</a>
-        <a href="#" class="btn">Learn More</a>
-      </div>
-    </div>
-    <div id="footer">
-      Help
-    </div>
+  <body ng-app="bowApp">
+    <div ng-view=""></div>
+
+    <!-- bower:js -->
+    <!-- endbower -->
+    <script src="/static/scripts/common.js"></script>
+    <script src="/static/scripts/bow_app.js"></script>
+    <script src="/static/scripts/index.js"></script>
   </body>
 </html>
