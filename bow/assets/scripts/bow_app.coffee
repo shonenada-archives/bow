@@ -2,7 +2,8 @@
 
 angular
   .module 'bowApp', [
-    'ngRoute'
+    'ngRoute',
+    'ngMessages'
   ]
   .config ['$routeProvider', ($routeProvider) ->
     $routeProvider.when '/',
