@@ -42,7 +42,7 @@ gulp.task 'stylus', ->
 
 gulp.task 'coffee', ->
   options =
-    base: true
+    bare: true
   gulp.src "#{assets.src}/scripts/*.coffee"
     .pipe sourcemaps.init()
     .pipe coffee options
@@ -60,6 +60,8 @@ gulp.task 'browser-sync', ->
         "/bower_components": "bower_components"
 
 gulp.task 'copy', ->
+  gulp.src "#{project.src}/views/*.html"
+    .pipe gulp.dest "#{project.dest}/views/"
   gulp.src "#{assets.src}/images/*.{png,jpg,gif}"
     .pipe gulp.dest "#{assets.dest}/images/"
 
