@@ -2,7 +2,7 @@
 
 angular
   .module 'bowApp'
-  .controller 'IndexController', ['$scope', '$http', ($scope, $http) ->
+  .controller 'IndexController', ['$scope', '$http', '$document', ($scope, $http, $document) ->
     $scope.username = ''
     $scope.password = ''
     $scope.email = ''
