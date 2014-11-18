@@ -18,6 +18,10 @@
   </div>
   <div class="form-box">
     <form name="signupForm" id="signup-form" class="submit-form" ng-submit="signUpSubmit()" novalidate>
+      <div ng-show="messages" class="messages">
+        {{messages}}
+      </div>
+
       <section>
         <label for="username">Username: </label>
         <input name="username" id="username" type="text" required placeholder="Username" ng-model="username" minlength="4" maxlength="24"/>
