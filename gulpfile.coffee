@@ -35,7 +35,7 @@ gulp.task 'stylus', ->
   options =
     use: nib()
     compress: not argv.debug
-  gulp.src "#{assets.src}/styles/*.styl"
+  gulp.src "#{assets.src}/styles/**/*.styl"
     .pipe stylus options
     .pipe gulp.dest "#{assets.dest}/styles/"
     .pipe browserSync.reload(stream: true)
@@ -43,7 +43,7 @@ gulp.task 'stylus', ->
 gulp.task 'coffee', ->
   options =
     bare: true
-  gulp.src "#{assets.src}/scripts/*.coffee"
+  gulp.src "#{assets.src}/scripts/**/*.coffee"
     .pipe sourcemaps.init()
     .pipe coffee options
     .pipe uglify()
@@ -60,9 +60,9 @@ gulp.task 'browser-sync', ->
         "/bower_components": "bower_components"
 
 gulp.task 'copy', ->
-  gulp.src "#{project.src}/views/*.html"
+  gulp.src "#{project.src}/views/**/*.html"
     .pipe gulp.dest "#{project.dest}/views/"
-  gulp.src "#{assets.src}/images/*.{png,jpg,gif}"
+  gulp.src "#{assets.src}/images/**/*.{png,jpg,gif}"
     .pipe gulp.dest "#{assets.dest}/images/"
 
 gulp.task 'watch', ['default'], ->
