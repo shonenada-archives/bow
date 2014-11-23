@@ -3,6 +3,7 @@
 angular
   .module 'bowApp', [
     'ngRoute',
+    'ngCookies',
     'ngMessages',
     'duScroll'
   ]
@@ -17,4 +18,10 @@ angular
     .when '/account/signup',
       templateUrl: 'views/account/signup.html'
       controller: 'SignUpController'
+    .when '/account/profile',
+      templateUrl: 'views/account/profile.html'
+      controller: 'ProfileController'
+    .otherwise
+      templateUrl: '404.html'
+      controller: 'NotFoundController'
   ]

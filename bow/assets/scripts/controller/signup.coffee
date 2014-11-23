@@ -2,29 +2,34 @@
 
 angular
   .module 'bowApp'
-  .controller 'SignUpController', ['$scope', '$http', '$document', '$location', '$timeout', ($scope, $http, $document, $location, $timeout) ->
+  .controller 'SignUpController', ['$scope', '$http', '$document', '$location', '$timeout', '$cookies', ($scope, $http, $document, $location, $timeout, $cookies) ->
+    console.log $cookies
+
     $scope.username = ''
     $scope.password = ''
     $scope.email = ''
     $scope.nickname = ''
     $scope.messages = ''
 
-    $scope.signUpSubmit = () ->
+    @_signUp = (username, password, email, nickname) ->
+      $http.post '/apis/account/signup',
+        username: username
+        password: password
+        email: email
+        nickname: nickname
+      .success (data) ->
+        if data.success
+          $scope.messages = 'SuccessFul'
+          $timeout () ->
+            $location.path '/account/signin'
+          , 1000
+        else
+          $scope.messages = data.messages.join ','
+
+
+    $scope.signUpSubmit = () =>
       if $scope.signupForm.$valid
-        $http.post '/apis/account/signup', {
-          username: $scope.username
-          password: $scope.password
-          email: $scope.email
-          nickname: $scope.nickname
-        }
-        .success (data) ->
-          if data.success
-            $scope.messages = 'SuccessFul'
-            $timeout () ->
-              $location.path '/account/signin'
-            , 1000
-          else
-            $scope.messages = data.messages.join ','
+        @_signUp($scope.username, $scope.password, $scope.email, $scope.nickname)
       else
         $scope.signupForm.username.$dirty = true
         $scope.signupForm.password.$dirty = true
