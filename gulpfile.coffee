@@ -43,11 +43,12 @@ gulp.task 'stylus', ->
 gulp.task 'coffee', ->
   options =
     bare: true
-  gulp.src "#{assets.src}/scripts/**/*.coffee"
+  stream = gulp.src "#{assets.src}/scripts/**/*.coffee"
     .pipe sourcemaps.init()
     .pipe coffee options
-    .pipe uglify()
-    .pipe sourcemaps.write("#{assets.sourcemap}")
+  unless argv.debug
+    stream = stream.pipe uglify()
+  stream.pipe sourcemaps.write("#{assets.sourcemap}")
     .pipe gulp.dest "#{assets.dest}/scripts/"
     .pipe browserSync.reload(stream: true)
 
