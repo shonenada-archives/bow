@@ -21,6 +21,12 @@ angular
     .when '/account/profile',
       templateUrl: 'views/account/profile.html'
       controller: 'ProfileController'
+    .when '/account/inbox',
+      templateUrl: 'views/account/inbox.html',
+      controller: 'InboxController',
+    .when '/account/letters',
+      templateUrl: 'views/account/letters.html',
+      controller: 'LettersController',
     .otherwise
       templateUrl: '404.html'
       controller: 'NotFoundController'
