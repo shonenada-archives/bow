@@ -2,8 +2,7 @@
 
 angular
   .module 'bowApp'
-  .controller 'SignUpController', ['$scope', '$http', '$document', '$location', '$timeout', '$cookies', ($scope, $http, $document, $location, $timeout, $cookies) ->
-    console.log $cookies
+  .controller 'SignUpController', ($scope, $http, $document, $location, $timeout, $cookies) ->
 
     $scope.username = ''
     $scope.password = ''
@@ -35,4 +34,3 @@ angular
         $scope.signupForm.password.$dirty = true
         $scope.signupForm.email.$dirty = true
         $scope.signupForm.nickname.$dirty = true
-  ]

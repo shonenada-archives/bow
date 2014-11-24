@@ -2,7 +2,7 @@
 
 angular
   .module 'bowApp'
-  .controller 'SignInController', ['$scope', '$http', '$document', '$location', '$timeout', 'CurrentUser', ($scope, $http, $document, $location, $timeout, CurrentUser) ->
+  .controller 'SignInController', ($scope, $http, $document, $location, $timeout, CurrentUser) ->
     $scope.username = ''
     $scope.password = ''
     $scope.messages = ''
@@ -26,4 +26,3 @@ angular
       else
         $scope.signinForm.username.$dirty = true
         $scope.signinForm.password.$dirty = true
-  ]

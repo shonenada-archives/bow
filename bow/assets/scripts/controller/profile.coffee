@@ -2,6 +2,5 @@
 
 angular
   .module 'bowApp'
-  .controller 'ProfileController', ['$scope', ($scope) ->
+  .controller 'ProfileController', ($scope) ->
     {}
-  ]

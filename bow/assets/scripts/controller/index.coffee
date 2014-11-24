@@ -2,12 +2,10 @@
 
 angular
   .module 'bowApp'
-  .controller 'IndexController', ['$scope', '$http', '$document', ($scope, $http, $document) ->
+  .controller 'IndexController', ($scope, $http, $document) ->
     {}
-  ]
 
 angular
   .module 'bowApp'
-  .controller 'NotFountController', ['$scope', ($scope) ->
+  .controller 'NotFountController', ($scope) ->
     {}
-  ]
