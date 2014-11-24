@@ -3,9 +3,10 @@
 
 #signup-box,
 #signin-box,
-#profile-box
+#profile-box,
+#inbox-box
   height 100vh
-  background-color main-bg-color
+  background-color $main-bg-color
   padding 100px 100px
 
   h2
@@ -15,7 +16,7 @@
     text-align center
     font-size 2.5em
     padding-bottom 20px
-    border-bottom 2px solid main-border-color
+    border-bottom 2px solid $main-border-color
     margin-bottom 40px
 
 .content-box
@@ -23,8 +24,11 @@
   padding 30px 50px 30px 50px
   margin 0 auto
   border-radius 6px
-  box-shadow 0 2px 0 0 main-border-color
+  box-shadow 0 2px 0 0 $main-border-color
   width 60%
 
 .content-box.small-box
   width 40%
+
+.content-box.large-box
+  width 80%
