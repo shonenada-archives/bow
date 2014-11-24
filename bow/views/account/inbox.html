@@ -14,19 +14,12 @@
           <td>%</td>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>#</td>
-          <td>From</td>
-          <td>Content</td>
-          <td>Time</td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>#</td>
-          <td>From</td>
-          <td>Content</td>
-          <td>Time</td>
+      <tbody ng-init="fetchInbox()">
+        <tr ng-repeat="letter in currentUser.getInbox()">
+          <td>{{$index}}</td>
+          <td>{{letter.form.getName()}}</td>
+          <td>{{letter.content}}</td>
+          <td>{{letter.time | date: 'yyyy-MM-DD'}}</td>
           <td>%</td>
         </tr>
       </tbody>
