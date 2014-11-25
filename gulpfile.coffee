@@ -66,11 +66,10 @@ gulp.task 'copy', ->
   gulp.src "#{assets.src}/images/**/*.{png,jpg,gif}"
     .pipe gulp.dest "#{assets.dest}/images/"
 
-gulp.task 'watch', ['default'], ->
-  gulp.start 'browser-sync'
-  gulp.watch ["#{assets.src}/*/**/*.{coffee,styl}",
+gulp.task 'watch', ['default', "browser-sync"], ->
+  gulp.watch ["#{assets.src}/**/*.coffee",
+              "#{assets.src}/**/*.styl",
               "#{project.src}/**/*.html",
-              "bower_components"]
-  , ['build']
+              "bower_components"], ['copy', 'coffee', 'stylus']
 
 gulp.task 'build', ['wiredep', 'stylus', 'coffee', 'copy']
