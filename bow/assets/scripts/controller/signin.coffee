@@ -1,12 +1,9 @@
-'use strict'
-
 angular
   .module 'bowApp'
   .controller 'SignInController', ($scope, $http, $document, $location, $timeout, CurrentUser) ->
     $scope.username = ''
     $scope.password = ''
     $scope.messages = ''
-
     @_signIn = (username, password) ->
       $http.post '/apis/account/signin',
         username: username

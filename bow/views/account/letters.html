@@ -1,0 +1,28 @@
+<header-navbar></header-navbar>
+<div id="letters-box" class="container">
+  <div class="wrapper text-center">
+    <h2>Letters</h2>
+  </div>
+  <div class="content-box large-box">
+    <table class="alt">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Target</td>
+          <td>Content</td>
+          <td>Time</td>
+          <td>%</td>
+        </tr>
+      </thead>
+      <tbody ng-init="fetchLetters()">
+        <tr ng-repeat="letter in currentUser.getLetters()">
+          <td>{{$index}}</td>
+          <td>{{letter.target.getName()}}</td>
+          <td>{{letter.content}}</td>
+          <td>{{letter.time | date: 'yyyy-MM-DD'}}</td>
+          <td>%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
