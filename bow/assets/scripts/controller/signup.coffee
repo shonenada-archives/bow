@@ -1,7 +1,4 @@
-'use strict'
-
-angular
-  .module 'bowApp'
+angular.module 'bowApp'
   .controller 'SignUpController', ($scope, $http, $document, $location, $timeout, $cookies) ->
 
     $scope.username = ''
@@ -16,14 +13,14 @@ angular
         password: password
         email: email
         nickname: nickname
-      .success (data) ->
-        if data.success
+      .success (resp) ->
+        if resp.success
           $scope.messages = 'SuccessFul'
           $timeout () ->
             $location.path '/account/signin'
           , 1000
         else
-          $scope.messages = data.messages.join ','
+          $scope.messages = resp.messages.join ','
 
 
     $scope.signUpSubmit = () =>

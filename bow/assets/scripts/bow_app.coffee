@@ -24,7 +24,10 @@ angular.module 'bowApp', [
       templateUrl: 'views/account/signup.html'
       controller: 'SignUpController'
     .when '/account/signout',
+      template: 'signout'
       controller: 'SignOutController'
+      resolve:
+        currentUser: requireAuth()
     .when '/account/profile',
       templateUrl: 'views/account/profile.html'
       controller: 'ProfileController'

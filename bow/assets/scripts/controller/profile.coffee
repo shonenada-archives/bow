@@ -1,6 +1,4 @@
-'use strict'
-
 angular
   .module 'bowApp'
-  .controller 'ProfileController', ($scope) ->
-    {}
+  .controller 'ProfileController', ($scope, CurrentUser) ->
+    $scope.currentUser = CurrentUser

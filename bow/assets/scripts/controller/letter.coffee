@@ -1,5 +1,4 @@
-angular
-  .module 'bowApp'
+angular.module 'bowApp'
   .controller 'LettersController', ($scope) ->
     $scope.fetchInbox = () ->
       {}
