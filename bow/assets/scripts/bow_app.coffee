@@ -2,9 +2,18 @@ angular.module 'bowApp', [
     'ngRoute',
     'ngCookies',
     'ngMessages',
-    'duScroll'
+    'duScroll',
+    'common'
   ]
   .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+
+    requireAnonymous = ->
+      ['$location', 'CurrentUser', ($location, CurrentUser) ->
+        CurrentUser.get().then ->
+          $location.path '/account/profile'
+        , ->
+          {}
+      ]
 
     requireAuth = ->
       ['$location', 'CurrentUser', ($location, CurrentUser) ->
@@ -17,6 +26,8 @@ angular.module 'bowApp', [
     .when '/',
       templateUrl: 'views/index-main.html'
       controller: 'IndexController'
+      resolve:
+        currentUser: requireAnonymous()
     .when '/account/signin',
       templateUrl: 'views/account/signin.html'
       controller: 'SignInController'
