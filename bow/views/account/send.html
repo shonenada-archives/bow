@@ -1,0 +1,35 @@
+<header-navbar></header-navbar>
+<div id="send-letter-box" class="container">
+  <div class="wrapper text-center">
+    <h2>Send Letter</h2>
+  </div>
+  <div class="content-box">
+    <form name="sendForm" id="send-form" class="submit-form" ng-submit="SendSubmit()" novalidate>
+      <div ng-show="messages" class="messages">
+        {{messages}}
+      </div>
+
+      <section>
+        <label for="send_to">Send To: </label>
+        <input name="send_to" id="send_to" type="text" required placeholder="Send To" ng-model="sendTo" minlength="4" maxlength="24"/>
+        <span class="error-msg" ng-show="sendForm.sendTo.$dirty" ng-messages="sendForm.sendTo.$error">
+          <span ng-message="required">Required</span>
+          <span ng-message="minlength">Too short</span>
+        </span>
+      </section>
+
+      <section>
+        <label for="Content">Content: </label>
+        <textarea name="content" id="content" placeholder="Content" ng-model="content" required></textarea>
+        <span class="error-msg" ng-show="sendForm.content.$dirty" ng-messages="sendForm.content.$error">
+          <span ng-message="required">Required</span>
+        </span>
+      </section>
+
+      <section class="text-center">
+        <button>Send</button>
+      </section>
+    </form>
+  </div>
+</div>
+

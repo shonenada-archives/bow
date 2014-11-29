@@ -54,6 +54,11 @@ angular.module 'bowApp', [
       controller: 'LettersController',
       resolve:
         currentUser: requireAuth()
+    .when '/account/send',
+      templateUrl: 'views/account/send.html',
+      controller: 'SendController',
+      resolve:
+        currentUser: requireAuth()
     .otherwise
       templateUrl: '404.html'
       controller: 'NotFoundController'
