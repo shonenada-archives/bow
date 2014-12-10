@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody ng-init="fetchLetters()">
-        <tr ng-repeat="letter in currentUser.getLetters()">
+        <tr ng-repeat="letter in letters">
           <td>{{$index}}</td>
           <td>{{letter.target.getName()}}</td>
           <td>{{letter.content}}</td>
