@@ -5,14 +5,14 @@ angular.module 'bowApp'
     $scope.messages = ''
 
     sendLetter = ->
-      $http.post '/apis/account/send',
+      $http.post '/apis/letters/send',
         send_to: $scope.sendTo
         content: $scope.content
       .success (resp) ->
         if resp.success
           $scope.messages = 'Success'
           $timeout ->
-            $loaction.path '/apis/account/letters'
+            $loaction.path '/account/letters'
           , 1000
         else
           $scope.messages = resp.messages.join ','
