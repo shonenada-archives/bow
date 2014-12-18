@@ -1,5 +1,5 @@
 angular.module 'bowApp'
-  .factory 'Letter', ($http) ->
+  .factory 'Letter', (Account) ->
 
     class Letter
       constructor: (data) ->
@@ -8,3 +8,11 @@ angular.module 'bowApp'
         @toId = data.to_id
         @content = data.content
         @sendTime = data.created
+        @initTarget()
+        @initFromUser()
+
+      initTarget: ->
+        @target = Account.getById @toId
+
+      initFromUser: ->
+        @fromUser = Account.getById @fromId
