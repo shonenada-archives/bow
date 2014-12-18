@@ -17,9 +17,9 @@
       <tbody ng-init="fetchLetters()">
         <tr ng-repeat="letter in letters">
           <td>{{$index}}</td>
-          <td>{{letter.target.getName()}}</td>
+          <td>{{letter.target.username}}</td>
           <td>{{letter.content}}</td>
-          <td>{{letter.time | date: 'yyyy-MM-DD'}}</td>
+          <td>{{letter.created | date: 'yyyy-MM-dd'}}</td>
           <td>%</td>
         </tr>
       </tbody>
