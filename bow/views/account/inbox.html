@@ -15,11 +15,11 @@
         </tr>
       </thead>
       <tbody ng-init="fetchInbox()">
-        <tr ng-repeat="letter in currentUser.getInbox()">
+        <tr ng-repeat="letter in inbox">
           <td>{{$index}}</td>
-          <td>{{letter.form.getName()}}</td>
+          <td>{{letter.user.username}}</td>
           <td>{{letter.content}}</td>
-          <td>{{letter.time | date: 'yyyy-MM-DD'}}</td>
+          <td>{{letter.created | date: 'yyyy-MM-dd'}}</td>
           <td>%</td>
         </tr>
       </tbody>
